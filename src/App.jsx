@@ -7,6 +7,8 @@ function App() {
         { id: 3, text: '공부하기', checked: false },
         { id: 2, text: '야구보기', checked: false },
         { id: 1, text: '저녁먹기', checked: false },
+
+        //{id: 1, text: '저녁먹기', checked: false }
     ])
 
     const hadleOnsubmit = (e) => {
@@ -18,8 +20,13 @@ function App() {
     }
 
     const removeTodo = (seletedId) => {
-        const fileterTodos = todos.filter((todo, index) => todo.id != seletedId)
+        const fileterTodos = todos.filter((todo) => todo.id != seletedId)
         setTodos(fileterTodos)
+    }
+
+    const ToggleTodo = (seletedId) => {
+        const updateTodos = todos.map((todo) => (todo.id == seletedId ? { ...todo, checked: !todo.checked } : todo))
+        setTodos(updateTodos)
     }
 
     return (
@@ -32,7 +39,8 @@ function App() {
             <ul>
                 {todos.map((todo, i) => (
                     <li key={todo.id}>
-                        <input type="checkbox" />
+                        <input type="checkbox" onChange={() => ToggleTodo(todo.id)} />
+                        {JSON.stringify(todo.checked)}
                         {todo.id} / {todo.text}
                         <button onClick={() => removeTodo(todo.id)}>X</button>
                     </li>
