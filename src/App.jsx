@@ -1,13 +1,17 @@
 import { useState } from 'react'
 
 function App() {
-    const [todos, setTodos] = useState(['공부하기', '야구보기', '저녁먹기'])
+    const [todos, setTodos] = useState([
+        { text: '공부하기', checked: false },
+        { text: '야구보기', checked: false },
+        { text: '저녁먹기', checked: false },
+    ])
 
     const hadleOnsubmit = (e) => {
         e.preventDefault()
         const form = e.target
 
-        setTodos([form.todo.value, ...todos])
+        setTodos([{ text: form.todo.value, checked: false }, ...todos])
     }
 
     const removeTodo = (seletedIndex) => {
@@ -25,7 +29,8 @@ function App() {
             <ul>
                 {todos.map((todo, i) => (
                     <li key={i}>
-                        {todo}
+                        <input type="checkbox" />
+                        {i} / {todo.text}
                         <button onClick={() => removeTodo(i)}>X</button>
                     </li>
                 ))}
