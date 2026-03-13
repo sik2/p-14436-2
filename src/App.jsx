@@ -1,21 +1,24 @@
 import { useState } from 'react'
 
 function App() {
+    const [todoId, setTodoId] = useState(4)
+
     const [todos, setTodos] = useState([
-        { text: '공부하기', checked: false },
-        { text: '야구보기', checked: false },
-        { text: '저녁먹기', checked: false },
+        { id: 3, text: '공부하기', checked: false },
+        { id: 2, text: '야구보기', checked: false },
+        { id: 1, text: '저녁먹기', checked: false },
     ])
 
     const hadleOnsubmit = (e) => {
         e.preventDefault()
         const form = e.target
 
-        setTodos([{ text: form.todo.value, checked: false }, ...todos])
+        setTodos([{ id: todoId, text: form.todo.value, checked: false }, ...todos])
+        setTodoId(todoId + 1)
     }
 
-    const removeTodo = (seletedIndex) => {
-        const fileterTodos = todos.filter((todo, index) => index != seletedIndex)
+    const removeTodo = (seletedId) => {
+        const fileterTodos = todos.filter((todo, index) => todo.id != seletedId)
         setTodos(fileterTodos)
     }
 
@@ -28,10 +31,10 @@ function App() {
 
             <ul>
                 {todos.map((todo, i) => (
-                    <li key={i}>
+                    <li key={todo.id}>
                         <input type="checkbox" />
-                        {i} / {todo.text}
-                        <button onClick={() => removeTodo(i)}>X</button>
+                        {todo.id} / {todo.text}
+                        <button onClick={() => removeTodo(todo.id)}>X</button>
                     </li>
                 ))}
             </ul>
