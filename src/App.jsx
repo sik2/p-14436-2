@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import TodoWriteForm from './components/TodoWriteForm'
 
 function App() {
     const lastId = useRef(4)
@@ -29,11 +30,7 @@ function App() {
 
     return (
         <>
-            <form onSubmit={hadleOnsubmit}>
-                <input type="text" name="todo" />
-                <button>입력</button>
-            </form>
-
+            <TodoWriteForm hadleOnsubmit={hadleOnsubmit} />
             <ul>
                 {todos.map((todo, i) => (
                     <li key={todo.id}>
