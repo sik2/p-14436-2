@@ -11,11 +11,8 @@ function App() {
         { id: 1, text: '저녁먹기', checked: true },
     ])
 
-    const hadleOnsubmit = (e) => {
-        e.preventDefault()
-        const form = e.target
-
-        setTodos([{ id: lastId.current, text: form.todo.value, checked: false }, ...todos])
+    const addTodo = (text) => {
+        setTodos([{ id: lastId.current, text, checked: false }, ...todos])
         lastId.current++
     }
 
@@ -31,7 +28,7 @@ function App() {
 
     return (
         <>
-            <TodoWriteForm hadleOnsubmit={hadleOnsubmit} />
+            <TodoWriteForm addTodo={addTodo} />
             <TodoList todos={todos} removeTodo={removeTodo} ToggleTodo={ToggleTodo} />
         </>
     )

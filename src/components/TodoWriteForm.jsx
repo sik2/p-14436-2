@@ -1,4 +1,10 @@
-function TodoWriteForm({ hadleOnsubmit }) {
+function TodoWriteForm({ addTodo }) {
+    const hadleOnsubmit = (e) => {
+        e.preventDefault()
+        const form = e.target
+        addTodo(form.todo.value)
+    }
+
     return (
         <>
             <form onSubmit={hadleOnsubmit}>
