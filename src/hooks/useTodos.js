@@ -19,7 +19,7 @@ export function useTodos() {
         setTodos(fileterTodos)
     }
 
-    const ToggleTodo = (seletedId) => {
+    const toggleTodo = (seletedId) => {
         const updateTodos = todos.map((todo) => (todo.id == seletedId ? { ...todo, checked: !todo.checked } : todo))
         setTodos(updateTodos)
     }
@@ -28,6 +28,6 @@ export function useTodos() {
         todos,
         addTodo,
         removeTodo,
-        ToggleTodo,
+        toggleTodo,
     }
 }

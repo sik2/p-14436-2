@@ -1,13 +1,10 @@
-function TodoList({ todos, removeTodo, ToggleTodo }) {
+import TodoItem from './TodoItem'
+
+function TodoList({ todos, removeTodo, toggleTodo }) {
     return (
         <ul>
-            {todos.map((todo, i) => (
-                <li key={todo.id}>
-                    <input type="checkbox" onChange={() => ToggleTodo(todo.id)} checked={todo.checked} />
-                    {JSON.stringify(todo.checked)}
-                    {todo.id} / {todo.text}
-                    <button onClick={() => removeTodo(todo.id)}>X</button>
-                </li>
+            {todos.map((todo) => (
+                <TodoItem key={todo.id} todo={todo} removeTodo={removeTodo} toggleTodo={toggleTodo} />
             ))}
         </ul>
     )
