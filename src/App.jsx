@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import TodoList from './components/TodoList'
 import TodoWriteForm from './components/TodoWriteForm'
 
 function App() {
@@ -31,16 +32,7 @@ function App() {
     return (
         <>
             <TodoWriteForm hadleOnsubmit={hadleOnsubmit} />
-            <ul>
-                {todos.map((todo, i) => (
-                    <li key={todo.id}>
-                        <input type="checkbox" onChange={() => ToggleTodo(todo.id)} checked={todo.checked} />
-                        {JSON.stringify(todo.checked)}
-                        {todo.id} / {todo.text}
-                        <button onClick={() => removeTodo(todo.id)}>X</button>
-                    </li>
-                ))}
-            </ul>
+            <TodoList todos={todos} removeTodo={removeTodo} ToggleTodo={ToggleTodo} />
         </>
     )
 }
