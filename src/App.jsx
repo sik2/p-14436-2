@@ -4,9 +4,9 @@ function App() {
     const [todoId, setTodoId] = useState(4)
 
     const [todos, setTodos] = useState([
-        { id: 3, text: '공부하기', checked: false },
+        { id: 3, text: '공부하기', checked: true },
         { id: 2, text: '야구보기', checked: false },
-        { id: 1, text: '저녁먹기', checked: false },
+        { id: 1, text: '저녁먹기', checked: true },
 
         //{id: 1, text: '저녁먹기', checked: false }
     ])
@@ -39,7 +39,7 @@ function App() {
             <ul>
                 {todos.map((todo, i) => (
                     <li key={todo.id}>
-                        <input type="checkbox" onChange={() => ToggleTodo(todo.id)} />
+                        <input type="checkbox" onChange={() => ToggleTodo(todo.id)} checked={todo.checked} />
                         {JSON.stringify(todo.checked)}
                         {todo.id} / {todo.text}
                         <button onClick={() => removeTodo(todo.id)}>X</button>
