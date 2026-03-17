@@ -1,6 +1,8 @@
-import { useRef, useState } from 'react'
+import { createContext, useContext, useRef, useState } from 'react'
 
-export function useTodos() {
+const TodoContext = createContext()
+
+export function TodoProvider({ children }) {
     const lastId = useRef(4)
 
     const [todos, setTodos] = useState([
@@ -24,10 +26,18 @@ export function useTodos() {
         setTodos(updateTodos)
     }
 
-    return {
+    const value = {
         todos,
         addTodo,
         removeTodo,
         toggleTodo,
     }
+
+    return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
+}
+
+export function useTodos() {
+    const context = useContext(TodoContext)
+
+    return context
 }
