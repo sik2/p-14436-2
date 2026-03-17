@@ -5,11 +5,7 @@ const TodoContext = createContext()
 export function TodoProvider({ children }) {
     const lastId = useRef(4)
 
-    const [todos, setTodos] = useState([
-        { id: 3, text: '공부하기', checked: true },
-        { id: 2, text: '야구보기', checked: false },
-        { id: 1, text: '저녁먹기', checked: true },
-    ])
+    const [todos, setTodos] = useState([])
 
     const addTodo = (text) => {
         setTodos([{ id: lastId.current, text, checked: false }, ...todos])
@@ -31,6 +27,7 @@ export function TodoProvider({ children }) {
         addTodo,
         removeTodo,
         toggleTodo,
+        setTodos,
     }
 
     return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
