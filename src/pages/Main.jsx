@@ -1,5 +1,13 @@
+import TodoList from '../components/TodoList'
+import TodoWriteForm from '../components/TodoWriteForm'
+
 function Main() {
-    return <>메인</>
+    return (
+        <>
+            <TodoWriteForm />
+            <TodoList />
+        </>
+    )
 }
 
 export default Main
